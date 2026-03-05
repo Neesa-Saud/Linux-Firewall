@@ -1,0 +1,31 @@
+# Iptables Commands Cheat Sheet
+
+
+
+|                    Command                                          |                      Use / Description                                   |
+|---------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `iptables -t filter --append INPUT -j DROP`                         | Append a rule to the INPUT chain to drop all traffic.                    |
+| `iptables -t filter --delete INPUT 2`                               | Delete rule number 2 from the INPUT chain.                               |
+| `iptables -t filter --check INPUT -s 192.168.1.123 -j DROP`         | Check if the rule exists in the INPUT chain; returns 0 if yes, 1 if not. |
+| `iptables -t filter -A INPUT -p udp -j DROP`                        | Append a rule in INPUT chain to drop all UDP packets.                    |
+| `iptables -t filter -A INPUT -s 192.168.1.230 -j ACCEPT`            | Accept all packets coming from source IP `192.168.1.230`.                |
+| `iptables -t filter -A OUTPUT -d 192.168.1.123 -j DROP`             | Drop all packets destined for `192.168.1.123` in OUTPUT chain.           |
+| `iptables -t filter -A INPUT -i wlan0 -j DROP`                      | Drop all packets coming from wireless interface `wlan0`.                 |
+| `iptables -t filter -A OUTPUT -o eth0 -j ACCEPT`                    | Accept all packets going out through interface `eth0`.                   |
+| `iptables -t filter -A FORWARD -j DROP`                             | Drop all packets in the FORWARD chain.                                   |
+| `sudo iptables --flush`                                             | Remove all rules and user-created chains.                                |
+| `sudo iptables-save`                                                | Save the current iptables configuration.                                 |
+| `sudo iptables-restore`                                             | Restore iptables configuration from a saved file.                        |
+| `ip6tables [options]`                                               | Manage filtering rules for IPv6 traffic (similar to iptables for IPv4).  |
+
+## Notes
+- `-t table` : Specifies the table to use (default is `filter`).
+- `-A` : Append a rule to a chain.
+- `-D` : Delete a rule from a chain.
+- `-C` : Check if a rule exists in a chain.
+- `-p` : Protocol (tcp, udp, icmp, ssh, etc.).
+- `-s` : Source IP address.
+- `-d` : Destination IP address.
+- `-i` : Incoming network interface.
+- `-o` : Outgoing network interface.
+- `-j` : Jump/Action to take (`ACCEPT`, `DROP`, etc.).
