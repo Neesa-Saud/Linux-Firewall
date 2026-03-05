@@ -1,0 +1,22 @@
+# UFW (Uncomplicated Firewall) Commands Cheat Sheet
+
+|                       Command                                      |                        Use / Description                                             |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `sudo apt update`                                                  | Update package lists before installing UFW.                                          |
+| `sudo apt install -y ufw`                                          | Install UFW on Ubuntu/Debian systems.                                                |
+| `sudo ufw status verbose`                                          | Check the current status and rules of UFW.                                           |
+| `sudo ufw allow 22/tcp comment 'SSH'`                              | Allow incoming SSH traffic on port 22.                                               |
+| `sudo ufw allow 80/tcp comment 'HTTP'`                             | Allow incoming HTTP traffic on port 80.                                              |
+| `sudo ufw allow 443/tcp comment 'HTTPS'`                           | Allow incoming HTTPS traffic on port 443.                                            |
+| `sudo ufw enable`                                                  | Enable the firewall and set it to start at boot.                                     |
+| `sudo ufw allow 40000:50000/tcp comment 'Passive-FTP'`             | Allow a range of ports (40000–50000) for TCP traffic, commonly used for passive FTP. |
+| `sudo ufw logging medium`                                          | Enable medium-level logging for UFW activity.                                        |
+| `sudo ufw status numbered`                                         | Show all current rules in numbered format.                                           |
+| `sudo ufw show added`                                              | Display all added rules with their details.                                          |
+| `sudo ufw disable`                                                 | Disable UFW and stop it from starting at boot.                                       |
+| `sudo ufw reset`                                                   | Reset UFW to default rules, removing all custom rules.                               |
+
+## Notes
+- Always allow SSH (`port 22`) before enabling UFW if you are connected remotely.  
+- Comments (`comment 'text'`) help identify rules easily.  
+- UFW is a simplified front-end for iptables, making firewall management easier.
